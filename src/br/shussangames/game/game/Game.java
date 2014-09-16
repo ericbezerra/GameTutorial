@@ -16,6 +16,7 @@ public class Game extends JFrame implements KeyListener{
 	private final int HEIGHT = 150;
 	private final int SCALE = 3;
 	private Dimension dimension = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
+	private Thread thread;
 	
 	BufferedImage backBuffer;
 	char teclaPressionada;
@@ -53,7 +54,22 @@ public class Game extends JFrame implements KeyListener{
 	public void run(){
 		this.init();
 		while(running){
+			try{
+			Thread.sleep(1000/30);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+				stop();
+			}
 			this.paint();
+		}
+	}
+	
+	public void stop(){
+		running = false;
+		try{
+		thread.join();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	
