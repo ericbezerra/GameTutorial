@@ -20,7 +20,7 @@ public class Game extends JFrame implements KeyListener{
 	
 	BufferedImage backBuffer;
 	char teclaPressionada;
-	int velocidade = 10;
+	int velocidade = 1;
 	int x = 200;
 	int y = 200;
 	boolean running = true;
@@ -35,6 +35,7 @@ public class Game extends JFrame implements KeyListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setVisible(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		backBuffer = new BufferedImage(WIDTH * SCALE, HEIGHT * SCALE, BufferedImage.TYPE_INT_RGB);
 		addKeyListener(this);
@@ -44,9 +45,9 @@ public class Game extends JFrame implements KeyListener{
 	public void paint(){
 		Graphics g = getGraphics();
 		Graphics bbg = backBuffer.getGraphics();
-		bbg.setColor(Color.WHITE);
+		bbg.setColor(Color.BLUE);
 		bbg.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
-		bbg.setColor(Color.BLACK);
+		bbg.setColor(Color.YELLOW);
 		bbg.fillOval(x, y, 50, 50);
 		g.drawImage(backBuffer, 0, 0, this);
 	}
@@ -78,7 +79,6 @@ public class Game extends JFrame implements KeyListener{
 		
 		if(e.getKeyCode() == KeyEvent.VK_A){
 			x -= velocidade;
-			System.out.println("pressed");
 		}
 		if(e.getKeyCode() == KeyEvent.VK_D){
 			x += velocidade;
@@ -91,11 +91,9 @@ public class Game extends JFrame implements KeyListener{
 		}
 	}
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }
